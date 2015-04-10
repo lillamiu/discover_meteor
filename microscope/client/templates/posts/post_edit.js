@@ -4,20 +4,32 @@ Template.postEdit.events({
 
     var currentPostId = this._id;
 
-    var postProperties = {
+    var postAttributes = {
       url: $(e.target).find('[name=url]').val(),
       title: $(e.target).find('[name=title]').val()
-    }
+    };
 
-    //$set: replaces a set of specified fields while leaving the others untouched
-    Posts.update(currentPostId, {$set: postProperties}, function(error) {
+    Meteor.call('postUpdate', postAttributes, currentPostId, function(error, result) {
       if (error) {
-        //display the error to the user
-        alert(error.reason);
-      } else {
-        Router.go('postPage', {_id: currentPostId});
+        //display the error to the user and abort
+        return alert(error.reason);
       }
+
+      if (result.postExists) {
+        alert("This link has already been posted");
+      }
+
+      if (result.notOwner) {
+        alert("This post is not yours to edit!");
+      }
+
+      if (result.invalidFieldUpdate) {
+        alert("Those fields shouldn't be touched!");
+      }
+
+      Router.go('postPage', {_id: result._id});
     });
+
   },
 
   'click .delete': function(e) {
