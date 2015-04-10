@@ -9,6 +9,13 @@ Posts.allow({
   }
 });
 
+Posts.deny({
+  update: function(userId, post, fieldNames) {
+    //may only edit the following two fields
+    return (_.without(fieldNames, 'url', 'title').length > 0);
+  }
+});
+
 Meteor.methods({
   postInsert: function(postAttributes) {
     check(Meteor.userId(), String);
@@ -30,7 +37,7 @@ Meteor.methods({
     var user = Meteor.user();
     var post = _.extend(postAttributes, {
       userId: user._id,
-      authour: user.username, 
+      author: user.username, 
       submitted: new Date()
     });
     var postId = Posts.insert(post);
