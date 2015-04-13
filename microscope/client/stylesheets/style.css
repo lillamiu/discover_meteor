@@ -157,7 +157,7 @@ body {
           animation: fadeOut 5000ms ease-in 0s 1 forwards;
   -webkit-animation: fadeOut 5000ms ease-in 0s 1 forwards;
      -moz-animation: fadeOut 5000ms ease-in 0s 1 forwards;
-  width: 250px;
+  width: 300px;
   float: right;
   clear: both;
   margin-bottom: 5px;
