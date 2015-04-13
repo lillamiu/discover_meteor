@@ -17,3 +17,10 @@ Package.onUse(function (api) {
     api.export('Errors');
   }
 });
+
+Package.onTest(function (api) {
+  api.use('lillamiu:errors', 'client');
+  api.use(['tinytest', 'test-helpers'], 'client');  
+
+  api.addFiles('errors_tests.js', 'client');
+});
