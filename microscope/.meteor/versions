@@ -31,6 +31,7 @@ iron:url@1.0.7
 jquery@1.11.3_2
 json@1.0.3
 launch-screen@1.0.2
+lillamiu:errors@0.0.2
 livedata@1.0.13
 localstorage@1.0.3
 logging@1.0.7
@@ -40,6 +41,7 @@ minifiers@1.1.5
 minimongo@1.0.8
 mobile-status-bar@1.0.3
 mongo@1.1.0
+mongo-livedata@1.0.8
 npm-bcrypt@0.7.8_2
 observe-sequence@1.0.6
 ordered-dict@1.0.3
