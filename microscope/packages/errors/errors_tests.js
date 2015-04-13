@@ -15,7 +15,7 @@ Tinytest.addAsync("Errors - template", function (test, done) {
   UI.insert(UI.render(Template.meteorErrors), document.body);
 
   Meteor.setTimeout(function () {
-    test.equal(Errors.collection.find({}).count, 0);
+    test.equal(Errors.collection.find({}).count(), 0);
     done();
   }, 5500);
 });
