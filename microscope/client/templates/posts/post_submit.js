@@ -3,17 +3,17 @@ Template.postSubmit.created = function() {
 };
 
 Template.postSubmit.helpers({
-  errorMessage: function(field) {
+  errorMessage: function (field) {
     return Session.get('postSubmitErrors')[field];
   },
-  errorClass: function(field) {
+  errorClass: function (field) {
     // '!!' converts an object/non-boolean into a boolean
     return !!Session.get('postSubmitErrors')[field] ? 'has-error' : '';
   }
 });
 
 Template.postSubmit.events({
-  'submit form': function(e) {
+  'submit form': function (e) {
     e.preventDefault();
 
     var post = {
@@ -26,7 +26,7 @@ Template.postSubmit.events({
       return Session.set('postSubmitErrors', errors);
     }
 
-    Meteor.call('postInsert', post, function(error, result) {
+    Meteor.call('postInsert', post, function (error, result) {
       if (error) {
         //display the error to the user and abort
         return throwError(error.reason);

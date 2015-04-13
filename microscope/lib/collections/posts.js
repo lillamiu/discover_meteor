@@ -58,6 +58,11 @@ Meteor.methods({
       url: String
     });
 
+    var errors = validatePost(postAttributes);
+    if (errors.title || errors.url) {
+      throw new Meteor.Error('invalid-post', "You must set a title and URL for your post.");
+    }
+
     //CHECK IF USER OWNS POST --------------
     var userId = Meteor.user()._id; 
     if (! ownsDocument(userId, post)) {
