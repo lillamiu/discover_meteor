@@ -12,19 +12,19 @@ Template.postEdit.events({
     Meteor.call('postUpdate', postAttributes, currentPostId, function(error, result) {
       if (error) {
         //display the error to the user and abort
-        return alert(error.reason);
+        return throwError(error.reason);
       }
 
       if (result.postExists) {
-        alert("This link has already been posted");
+        throwError("This link has already been posted");
       }
 
       if (result.notOwner) {
-        alert("This post is not yours to edit!");
+        throwError("This post is not yours to edit!");
       }
 
       if (result.invalidFieldUpdate) {
-        alert("Those fields shouldn't be touched!");
+        throwError("Those fields shouldn't be touched!");
       }
 
       Router.go('postPage', {_id: result._id});
