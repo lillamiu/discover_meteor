@@ -20,6 +20,10 @@ Meteor.methods({
       submitted: new Date()
     });
 
+    // update the post with the number of comments
+    // $inc is a MongoDB operator to increment a field by x
+    Posts.update(comment.postId, {$inc: {commentsCount: 1}});
+
     return Comments.insert(comment);
   }
 });
