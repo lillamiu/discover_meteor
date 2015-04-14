@@ -24,6 +24,12 @@ Meteor.methods({
     // $inc is a MongoDB operator to increment a field by x
     Posts.update(comment.postId, {$inc: {commentsCount: 1}});
 
-    return Comments.insert(comment);
+    // create the comment, save the id
+    comment._id = Comments.insert(comment);
+
+    //now create a notification, informing the owner of the post that there's been a comment on his post
+    createCommentNotification(comment);
+
+    return comment._id;
   }
 });
